@@ -1,27 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  constructor(props){
-    super(props)
+export default class App extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      BaseURL = "https://maps.googleapis.com/maps/api/js?key=",
-      API_KEY = process.env.GOOGLE_MAPS_API_KEY,
-      endURL = "&callback=initMap"
+      BaseURL: "https://maps.googleapis.com/maps/api/js?key=",
+      API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+      endURL: "&callback=initMap"
     }
   }
-  
-  return (
-    <div>
-        <nav className="navBar">
-          <ul className='navList'>
-            <li>Home</li>
-            <li>My Locations</li>
-          </ul>
-        </nav>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+          <nav className="navBar">
+            <ul className='navList'>
+              <li>Home</li>
+              <li>My Locations</li>
+            </ul>
+          </nav>
+      </div>
+    );
+  }
 }
-
-export default App;

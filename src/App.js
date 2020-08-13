@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Location from './components/Locations'
+import Map from './components/Map'
 
 export default class App extends Component {
   constructor(props) {
@@ -9,6 +10,8 @@ export default class App extends Component {
       API_KEY: process.env.GOOGLE_MAPS_API_KEY,
       endURL: "&callback=initMap",
       locations: [],
+      home: true,
+      myLocations: false,
     }
   }
 
@@ -28,6 +31,14 @@ export default class App extends Component {
     })
   }
 
+  ChangeLocation(){
+
+  }
+
+  HomePage(){
+    
+  }
+
   render() {
     return (
       <div>
@@ -37,9 +48,17 @@ export default class App extends Component {
               <li>My Locations</li>
             </ul>
           </nav>
-
-
-          <Location />
+          {this.state.home ? (
+            <Map />
+          ) : (
+            <></>
+          )}
+          {this.state.locations ? (
+              <Location />
+          ): (
+            <> </>
+          )}
+          
       </div>
     );
   }

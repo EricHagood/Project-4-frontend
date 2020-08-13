@@ -8,7 +8,9 @@ export default class Map extends Component {
                 <form>
                     
                 </form>
+                <SimpleMap />
             </div>
+            
         )
     }
 }

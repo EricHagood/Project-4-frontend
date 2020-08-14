@@ -36,7 +36,7 @@ export default class App extends Component {
   }
 
   HomePage(){
-    
+
   }
 
   render() {
@@ -49,7 +49,7 @@ export default class App extends Component {
             </ul>
           </nav>
           {this.state.home ? (
-            <Map />
+            <Map API_KEY={this.state.API_KEY} />
           ) : (
             <></>
           )}

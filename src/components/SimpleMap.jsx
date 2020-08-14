@@ -1,37 +1,32 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
 
-const AnyReactComponent = ({text}) => <div>{text}</div>
+const AnyReactComponent = ({text}) => <div>{text}</div>;
 
 export default class SimpleMap extends Component {
     constructor(props){
         super(props)
         this.state = {
-            center: {
-                lat: 0,
-                lng: 0
-            },
+            center: [0.000000, 0.000000],
             zoom: 11
         }
     }
 
     componentDidMount(){
         this.setState({
-            center:{
-                lat: this.props.lat,
-                lng: this.props.lng
-            }
+            center:[this.props.lat, this.props.lng]
         })
     }
 
     render() {
         return (
-            <div>
+            <div className='map' style={{ height: '40vh', width: '60%'}}>
                 <GoogleMapReact
-                    defaultCenter={this.center}
-                    defaultZoom={this.zoom}
+                bootstrapURLKeys={this.props.API_KEY}
+                    defaultCenter={this.state.center}
+                    defaultZoom={this.state.zoom}
                 >
-                    <AnyReactComponent 
+                    <AnyReactComponent
                         lat = {this.props.lat}
                         lng = {this.props.lng}
                         text = "Marker"

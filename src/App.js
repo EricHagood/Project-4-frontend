@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Location from './components/Locations'
 import Map from './components/Map'
+import Submit from './components/SubmitLocation'
+import View from './components/LocationView'
 
 export default class App extends Component {
   constructor(props) {
@@ -12,7 +14,12 @@ export default class App extends Component {
       locations: [],
       home: true,
       myLocations: false,
+      location: false,
+      view: false,
+      submit: false
     }
+    this.HomePage = this.HomePage.bind(this)
+    this.MyLocations = this.MyLocations.bind(this)
   }
 
   componentDidMount(){
@@ -36,6 +43,43 @@ export default class App extends Component {
   }
 
   HomePage(){
+    this.setState({
+      home: true,
+      myLocations: false,
+      location: false,
+      view: false,
+      submit: false
+    })
+  }
+  ViewPage(){
+    this.setState({
+      home: false,
+      myLocations: false,
+      location: false,
+      view: true,
+      submit: false
+    })
+  }
+  MyLocations(){
+    this.setState({
+      home: false,
+      myLocations: true,
+      location: false,
+      view: false,
+      submit: false
+    })
+  }
+  SubmitPage(){
+    this.setState({
+      home: false,
+      myLocations: false,
+      location: false,
+      view: false,
+      submit: true
+    })
+  }
+
+  sendData(data){
 
   }
 
@@ -44,12 +88,12 @@ export default class App extends Component {
       <div>
           <nav className="navBar">
             <ul className='navList'>
-              <li>Home</li>
-              <li>My Locations</li>
+              <li onClick={this.HomePage}>Home</li>
+              <li onClick={this.MyLocations}>My Locations</li>
             </ul>
           </nav>
           {this.state.home ? (
-            <Map API_KEY={this.state.API_KEY} />
+            <Map API_KEY={this.state.API_KEY} sendData={this.sendData} />
           ) : (
             <></>
           )}

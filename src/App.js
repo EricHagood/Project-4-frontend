@@ -98,7 +98,7 @@ export default class App extends Component {
             <></>
           )}
           {this.state.locations ? (
-              <Location />
+              <Location myLocations={this.state.myLocations} />
           ): (
             <> </>
           )}

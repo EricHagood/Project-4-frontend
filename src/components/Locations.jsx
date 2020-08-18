@@ -6,9 +6,9 @@ export default class Locations extends Component {
             this.props.myLocations.map( (location, index) =>{
                 return (
                     <div key={index}>
-                        <p className="name">{location.city}</p>
+                        <p className="name" onClick={this.props.ChangeLocation(location)} >{location.city}</p>
                         {location.image ? (
-                            <img src='smthn'></img>
+                            <img src={atob(location.image)} alt={location.city}></img>
                         ): (
                             <></>
                         )}

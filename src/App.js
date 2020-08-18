@@ -9,7 +9,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       BaseURL: "https://maps.googleapis.com/maps/api/js?key=",
-      API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+      API_KEY: process.env.REACT_APP_API_KEY,
       endURL: "&callback=initMap",
       locations: [],
       home: true,
@@ -38,8 +38,15 @@ export default class App extends Component {
     })
   }
 
-  ChangeLocation(){
-
+  ChangeLocation(location){
+    this.setState({
+      home: false,
+      myLocations: false,
+      location: false,
+      view: true,
+      submit: false,
+      viewLocation: location
+    })
   }
 
   HomePage(){
@@ -69,18 +76,19 @@ export default class App extends Component {
       submit: false
     })
   }
-  SubmitPage(){
+  SubmitPage(loc){
     this.setState({
       home: false,
       myLocations: false,
       location: false,
       view: false,
-      submit: true
+      submit: true,
+      submitLocation: loc,
     })
   }
 
   sendData(data){
-
+    console.log(data)
   }
 
   render() {
@@ -97,10 +105,25 @@ export default class App extends Component {
           ) : (
             <></>
           )}
-          {this.state.locations ? (
-              <Location myLocations={this.state.myLocations} />
+          {this.state.myLocations ? (
+              <Location myLocations={this.state.locations} ChangeLocation={this.ChangeLocation} SubmitPage={this.SubmitPage} />
           ): (
             <> </>
+          )}
+          {this.state.view ? (
+            <View location={this.state.viewLocation} />
+          ):(
+            <></>
+          )}
+          {this.state.submit ? (
+            <Submit location={this.state.submitLocation} />
+          ): (
+            <></>
+          )}
+          {this.state.location ? (
+            <Location location={this.state.viewLocation} />
+          ): (
+            <></>
           )}
           
       </div>

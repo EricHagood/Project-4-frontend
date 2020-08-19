@@ -27,7 +27,7 @@ export default class SubmitLocation extends Component {
     handleSubmit(event){
         event.preventDefault()
         let imgstring = btoa(this.state.image)
-        fetch(this.state.baseURL, {
+        fetch(this.state.baseURL + this.props.location.id, {
             method:'POST',
             body: JSON.stringify({
                 city: this.state.city,

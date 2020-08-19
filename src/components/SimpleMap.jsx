@@ -7,24 +7,43 @@ export default class SimpleMap extends Component {
     constructor(props){
         super(props)
         this.state = {
-            center: [0.000000, 0.000000],
+            center:{
+                lat: 0,
+                lng: 0
+            },
             zoom: 11
         }
     }
 
     componentDidMount(){
-        this.setState({
-            center:[this.props.lat, this.props.lng]
-        })
+        if (this.props.lat && this.props.lng){
+            this.setState({
+                center:[this.props.lat, this.props.lng]
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps){
+        if (prevProps.lat !== this.props.lat){
+            this.setState({
+                center:{
+                    lat: this.props.lat,
+                    lng: this.props.lng
+                }
+            })
+        }
     }
 
     render() {
         return (
             <div className='map' style={{ height: '40vh', width: '60%'}}>
                 <GoogleMapReact
-                bootstrapURLKeys={this.props.API_KEY}
-                    defaultCenter={this.state.center}
+                    bootstrapURLKeys={this.props.API_KEY}
+                    center={this.state.center}
                     defaultZoom={this.state.zoom}
+                    ref={(ref)=>{
+                        this.mapRef = ref;
+                    }}
                 >
                     <AnyReactComponent
                         lat = {this.props.lat}

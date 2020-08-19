@@ -121,7 +121,7 @@ export default class App extends Component {
             <></>
           )}
           {this.state.location ? (
-            <Location location={this.state.viewLocation} />
+            <Location location={this.state.viewLocation} API_KEY={this.state.API_KEY} />
           ): (
             <></>
           )}

@@ -45,8 +45,9 @@ export default class Map extends Component {
         fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&key=" + this.props.API_KEY).then(response =>{
             return response.json()
         }).then (data => {
-            this.props.sendData(data)
+            this.props.sendData(data, lat, lng)
         })
+        console.log(lat + ', '+lng)
     }
 
     render() {

@@ -104,19 +104,45 @@ export default class App extends Component {
     })
   }
 
-  sendData(data, index){
+  sendData(data, lat, lng){
     console.log(data)
-    fetch('http://localhost:8000/api/v1/locations/', {
-      method: 'POST'
-    }).then(response=>{
-      return response.json()
-    }).then(data =>{
-      const copyLocations = [...this.state.locations]
-      copyLocations.splice(index, 1, data)
-      this.setState({
-        locations: copyLocations
+    if (data.results[0]){
+      fetch('http://localhost:8000/api/v1/locations/', {
+        method: 'POST',
+        body: JSON.stringify({
+          city: data.results[0].formatted_address,
+          latitude: data.results[0].geometry.location.lat,
+          longitude: data.results[0].geometry.location.lng,
+          
+        })
+      }).then(response=>{
+        return response.json()
+      }).then(data =>{
+        const copyLocation = [...this.state.locations]
+        copyLocation.push(data)
+        this.setState({
+          locations: copyLocation
+        })
       })
-    })
+    }else{
+      fetch('http://localhost:8000/api/v1/locations/', {
+        method: 'POST',
+        body: JSON.stringify({
+          city: 'No name given from API',
+          latitude: lat,
+          longitude: lng
+        })
+      }).then(response=>{
+        return response.json()
+      }).then(data =>{
+        const copyLocation = [...this.state.locations]
+        copyLocation.push(data)
+        this.setState({
+          locations: copyLocation
+        })
+      })
+    }
+    
   }
 
   render() {

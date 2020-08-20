@@ -7,29 +7,30 @@ export default class SimpleMap extends Component {
     constructor(props){
         super(props)
         this.state = {
-            center:{
-                lat: 0,
-                lng: 0
-            },
+            center:[0, 0],
             zoom: 11
         }
     }
 
-    componentDidMount(){
-        if (this.props.lat && this.props.lng){
-            this.setState({
-                center:[this.props.lat, this.props.lng]
-            })
+    // componentDidMount(){
+    //     if (this.props.lat && this.props.lng){
+    //         this.setState({
+    //             center:[this.props.lat, this.props.lng]
+    //         })
+    //     }
+    // }
+
+    apiIsLoaded(map, maps, lat, lng){
+        if(map){
+            const latLng = maps.LatLng(lat, lng)
+            map.panTo(latLng)
         }
     }
 
     componentDidUpdate(prevProps){
         if (prevProps.lat !== this.props.lat){
             this.setState({
-                center:{
-                    lat: this.props.lat,
-                    lng: this.props.lng
-                }
+                center:[this.props.lat, this.props.lng]
             })
         }
     }
@@ -41,9 +42,8 @@ export default class SimpleMap extends Component {
                     bootstrapURLKeys={this.props.API_KEY}
                     center={this.state.center}
                     defaultZoom={this.state.zoom}
-                    ref={(ref)=>{
-                        this.mapRef = ref;
-                    }}
+                    yesIWantToUseGoogleMapApiInternals
+                    onGoogleApiLoaded={({map, maps})=>this.apiIsLoaded(map, maps, this.props.lat, this.props.lng)}
                 >
                     <AnyReactComponent
                         lat = {this.props.lat}

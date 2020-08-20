@@ -38,6 +38,23 @@ export default class App extends Component {
     })
   }
 
+  handleDelete(deletedLocation, index){
+    fetch('http://localhost:8000/api/v1/locations/' + deletedLocation.id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response =>{
+        return response.json()
+    }).then(data =>{
+      const copyLocations = [...this.state.locations]
+      copyLocations.splice(index, 1)
+      this.setState({
+        locations: copyLocations
+      })
+    })
+}
+
   ChangeLocation(location){
     this.setState({
       home: false,
@@ -87,8 +104,19 @@ export default class App extends Component {
     })
   }
 
-  sendData(data){
+  sendData(data, index){
     console.log(data)
+    fetch('http://localhost:8000/api/v1/locations/', {
+      method: 'POST'
+    }).then(response=>{
+      return response.json()
+    }).then(data =>{
+      const copyLocations = [...this.state.locations]
+      copyLocations.splice(index, 1, data)
+      this.setState({
+        locations: copyLocations
+      })
+    })
   }
 
   render() {
@@ -106,7 +134,7 @@ export default class App extends Component {
             <></>
           )}
           {this.state.myLocations ? (
-              <Location myLocations={this.state.locations} ChangeLocation={this.ChangeLocation} SubmitPage={this.SubmitPage} />
+              <Location myLocations={this.state.locations} ChangeLocation={this.ChangeLocation} SubmitPage={this.SubmitPage} deletedLocation={this.deletedLocation} />
           ): (
             <> </>
           )}
@@ -120,11 +148,11 @@ export default class App extends Component {
           ): (
             <></>
           )}
-          {this.state.location ? (
+          {/* {this.state.location ? (
             <Location location={this.state.viewLocation} API_KEY={this.state.API_KEY} />
           ): (
             <></>
-          )}
+          )} */}
           
       </div>
     );

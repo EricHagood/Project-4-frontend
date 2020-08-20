@@ -24,11 +24,11 @@ export default class SubmitLocation extends Component {
         });
     }
 
-    handleSubmit(event){
+    handleSubmit(event, index){
         event.preventDefault()
         let imgstring = btoa(this.state.image)
         fetch(this.state.baseURL + this.props.location.id, {
-            method:'POST',
+            method:'PUT',
             body: JSON.stringify({
                 city: this.state.city,
                 latitude: this.props.location.latitude,
@@ -41,7 +41,13 @@ export default class SubmitLocation extends Component {
                 'Content-Type': 'application/json',
             },
         }).then(response =>{
-            return response.json
+            return response.json()
+        }).then (data =>{
+            const copyLocations = [...this.state.locations]
+            copyLocations.splice(index, 1, data)
+            this.setState({
+                locations: copyLocations
+            })
         })
     }
 

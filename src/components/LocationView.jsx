@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SimpleMap from './SimpleMap'
 
 export default class LocationView extends Component {
+
     render() {
         return (
             <div className="location">

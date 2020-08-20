@@ -113,7 +113,7 @@ export default class App extends Component {
           city: data.results[0].formatted_address,
           latitude: data.results[0].geometry.location.lat,
           longitude: data.results[0].geometry.location.lng,
-          
+          visited: 'False'
         })
       }).then(response=>{
         return response.json()
@@ -130,7 +130,8 @@ export default class App extends Component {
         body: JSON.stringify({
           city: 'No name given from API',
           latitude: lat,
-          longitude: lng
+          longitude: lng,
+          visited: 'false'
         })
       }).then(response=>{
         return response.json()
@@ -149,10 +150,12 @@ export default class App extends Component {
     return (
       <div>
           <nav className="navBar">
-            <ul className='navList'>
+            {/* <ul className='navList'>
               <li onClick={this.HomePage}>Home</li>
               <li onClick={this.MyLocations}>My Locations</li>
-            </ul>
+            </ul> */}
+            <span onClick={this.HomePage} className="nav-item">Home</span>
+            <span onClick={this.MyLocations} className="nav-item">My Locations</span>
           </nav>
           {this.state.home ? (
             <Map API_KEY={this.state.API_KEY} sendData={this.sendData} />

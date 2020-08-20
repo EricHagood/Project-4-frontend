@@ -53,17 +53,20 @@ export default class Map extends Component {
     render() {
         return (
             <div>
+                
                 <form onSubmit={this.handleSubmit}>
-                    <label  htmlFor="city">Limit to a city:</label>
-                    <input type="text" id="city" onChange={ (evt) => this.handleChange(evt) }
-                            value={ this.state.city } />
-                    <label htmlFor="mileLimit">Mile Limit</label>
-                    <input type="number" id='mileLimit' onChange={ (evt) => this.handleChange(evt) }
-                            value={ this.state.mileLimit } />
+                    <div className="cityInputs">
+                        <label  htmlFor="city">Limit to a city:</label>
+                        <input type="text" id="city" onChange={ (evt) => this.handleChange(evt) }
+                                value={ this.state.city } />
+                        <label htmlFor="mileLimit">Mile Limit</label>
+                        <input type="number" id='mileLimit' onChange={ (evt) => this.handleChange(evt) }
+                                value={ this.state.mileLimit } />
 
-                    <input type="submit" value="Generate Location" />
+                        <input type="submit" value="Generate Location" />
+                    </div>
                 </form>
-                <SimpleMap lat={this.state.latitude} lng={this.state.longitude} API_KEY={this.props.API_KEY} />
+                <SimpleMap lat={this.state.latitude} lng={this.state.longitude} API_KEY={this.props.API_KEY} height="60vh" width='80%' />
             </div>
             
         )

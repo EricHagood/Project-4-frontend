@@ -44,4 +44,6 @@ nav {
 
 .locationbox{
   width: 40%;
+  border: black;
+  border-radius: 15%;
 }

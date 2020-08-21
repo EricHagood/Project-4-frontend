@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import axios from 'axios'
 import Location from './components/Locations'
 import Map from './components/Map'
 import Submit from './components/SubmitLocation'
@@ -114,7 +115,11 @@ export default class App extends Component {
           latitude: data.results[0].geometry.location.lat,
           longitude: data.results[0].geometry.location.lng,
           visited: 'False'
-        })
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:3000'
+        }
       }).then(response=>{
         return response.json()
       }).then(data =>{
@@ -132,7 +137,11 @@ export default class App extends Component {
           latitude: lat,
           longitude: lng,
           visited: 'false'
-        })
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:3000'
+        }
       }).then(response=>{
         return response.json()
       }).then(data =>{
@@ -143,17 +152,33 @@ export default class App extends Component {
         })
       })
     }
+
+    // axios.post('http://localhost:8000/api/v1/locations/',{
+    //   city: 'No name given from API',
+    //   latitude: lat,
+    //   longitude: lng,
+    //   visited: 'false'
+    // }).then(
+    //   res =>{
+    //     return res.json()
+    //   }
+    // ).then(data=>{
+    //   const copyLocation = [...this.state.locations]
+    //   copyLocation.push(data)
+    //   this.setState({
+    //     locations: copyLocation
+    //     })
+    // })
     
+
+
+
   }
 
   render() {
     return (
       <div>
           <nav className="navBar">
-            {/* <ul className='navList'>
-              <li onClick={this.HomePage}>Home</li>
-              <li onClick={this.MyLocations}>My Locations</li>
-            </ul> */}
             <span onClick={this.HomePage} className="nav-item">Home</span>
             <span onClick={this.MyLocations} className="nav-item">My Locations</span>
           </nav>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Locations extends Component {
     
-
+    
     
 
     render() {
@@ -10,10 +10,10 @@ export default class Locations extends Component {
             this.props.myLocations.map( (location, index) =>{
                 return (
                     <div key={index} className="locationbox">
-                        <h3 className="name" onClick={this.props.ChangeLocation(location)} >{location.city}</h3>
-                        <p onClick={this.props.handleDelete(location, index)}>X</p>
+                        <h3 className="name" >{location.city}</h3>
+                        <p >X</p>
                         {location.image ? (
-                            <img src={atob(location.image)} alt={location.city}></img>
+                            <img src="data:image/jpeg;base64, {this.props.location.image}" alt={location.city}></img>
                         ): (
                             <></>
                         )}
@@ -24,3 +24,4 @@ export default class Locations extends Component {
         )
     }
 }
+//{this.props.ChangeLocation(location)}

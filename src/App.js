@@ -21,6 +21,11 @@ export default class App extends Component {
     }
     this.HomePage = this.HomePage.bind(this)
     this.MyLocations = this.MyLocations.bind(this)
+    this.ViewPage = this.ViewPage.bind(this)
+    this.SubmitPage = this.SubmitPage.bind(this)
+    this.ChangeLocation = this.ChangeLocation.bind(this)
+    this.sendData = this.sendData.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount(){
@@ -32,8 +37,10 @@ export default class App extends Component {
       return response.json();
     }).then(data => {
       this.setState({
-        locations: data
+        locations: data.data
       })
+      // console.log(data)
+      console.log(this.state.locations)
     }).catch(err => {
       console.log('error', err)
     })
@@ -114,17 +121,20 @@ export default class App extends Component {
           city: data.results[0].formatted_address,
           latitude: data.results[0].geometry.location.lat,
           longitude: data.results[0].geometry.location.lng,
+          image: '',
+          description: '',
           visited: 'False'
         }),
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:3000'
+          'Access-Control-Allow-Origin': '*'
         }
       }).then(response=>{
         return response.json()
       }).then(data =>{
+        console.log(this.state.locations)
         const copyLocation = [...this.state.locations]
-        copyLocation.push(data)
+        copyLocation.push(data.data)
         this.setState({
           locations: copyLocation
         })
@@ -136,11 +146,13 @@ export default class App extends Component {
           city: 'No name given from API',
           latitude: lat,
           longitude: lng,
+          image: '',
+          description: '',
           visited: 'false'
         }),
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:3000'
+          'Access-Control-Allow-Origin': '*'
         }
       }).then(response=>{
         return response.json()
@@ -150,6 +162,7 @@ export default class App extends Component {
         this.setState({
           locations: copyLocation
         })
+        console.log(this.state.locations)
       })
     }
 
@@ -188,7 +201,7 @@ export default class App extends Component {
             <></>
           )}
           {this.state.myLocations ? (
-              <Location myLocations={this.state.locations} ChangeLocation={this.ChangeLocation} SubmitPage={this.SubmitPage} deletedLocation={this.deletedLocation} />
+              <Location myLocations={this.state.locations} ChangeLocation={this.ChangeLocation} SubmitPage={this.SubmitPage} handleDelete={this.handleDelete} />
           ): (
             <> </>
           )}

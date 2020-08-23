@@ -16,7 +16,7 @@ export default class Locations extends Component {
                                 <button className="deleteItem" onClick={() => {this.props.handleDelete(location, index)}}>X</button>
                             </div>
                             {location.image ? (
-                                <img src="data:image/jpeg;base64, {this.props.location.image}" alt={location.city}></img>
+                                <img src={"data:image/jpeg;base64,"  + location.image} alt={location.city}></img>
                             ): (
                                 <></>
                             )}

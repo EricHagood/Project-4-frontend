@@ -53,7 +53,6 @@ export default class Map extends Component {
     render() {
         return (
             <div>
-                
                 <form onSubmit={this.handleSubmit}>
                     <div className="cityInputs">
                         <label  htmlFor="city">Limit to a city:</label>

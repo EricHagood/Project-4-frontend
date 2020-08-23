@@ -30,16 +30,16 @@ export default class SimpleMap extends Component {
         }
     }
 
-    componentDidUpdate(prevProps){
-        if (prevProps.lat !== this.props.lat){
-            this.setState({
-                center:{
-                    lat: this.props.latitude,
-                    lng: this.props.longitude
-                }
-            })
-        }
-    }
+    // componentDidUpdate(prevProps){
+    //     if (prevProps.lat !== this.props.lat){
+    //         this.setState({
+    //             center:{
+    //                 lat: this.props.latitude,
+    //                 lng: this.props.longitude
+    //             }
+    //         })
+    //     }
+    // }
 
     render() {
         return (

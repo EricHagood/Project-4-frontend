@@ -4,6 +4,7 @@ import Location from './components/Locations'
 import Map from './components/Map'
 import Submit from './components/SubmitLocation'
 import View from './components/LocationView'
+import Nav from './components/Nav'
 
 export default class App extends Component {
   constructor(props) {
@@ -93,6 +94,7 @@ export default class App extends Component {
     })
   }
   MyLocations(){
+    console.log('making it here')
     this.setState({
       home: false,
       myLocations: true,
@@ -191,12 +193,10 @@ export default class App extends Component {
   render() {
     return (
       <div>
-          <nav className="navBar">
-            <span onClick={this.HomePage} className="nav-item">Home</span>
-            <span onClick={this.MyLocations} className="nav-item">My Locations</span>
-          </nav>
+          <Nav HomePage={this.HomePage} MyLocations={this.MyLocations} />
+
           {this.state.home ? (
-            <Map API_KEY={this.state.API_KEY} sendData={this.sendData} />
+            <Map API_KEY={this.state.API_KEY} sendData={this.sendData} HomePage={this.HomePage} MyLocations={this.MyLocations} />
           ) : (
             <></>
           )}
@@ -206,21 +206,15 @@ export default class App extends Component {
             <> </>
           )}
           {this.state.view ? (
-            <View location={this.state.viewLocation} />
+            <View location={this.state.viewLocation} homePage={this.homePage} myLocations={this.myLocations} />
           ):(
             <></>
           )}
           {this.state.submit ? (
-            <Submit location={this.state.submitLocation} />
+            <Submit location={this.state.submitLocation} homePage={this.homePage} myLocations={this.myLocations} />
           ): (
             <></>
           )}
-          {/* {this.state.location ? (
-            <Location location={this.state.viewLocation} API_KEY={this.state.API_KEY} />
-          ): (
-            <></>
-          )} */}
-          
       </div>
     );
   }

@@ -12,6 +12,12 @@ export default class SubmitLocation extends Component {
         this.fileChange = this.fileChange.bind(this)
     }
 
+    componentDidMount(){
+        this.setState({
+            city: this.props.location.city
+        })
+    }
+
     fileChange(event){
         this.setState({
             image: event.target.files[0]
@@ -27,6 +33,7 @@ export default class SubmitLocation extends Component {
     handleSubmit(event, index){
         event.preventDefault()
         let imgstring = btoa(this.state.image)
+        console.log(imgstring)
         fetch(this.state.baseURL + this.props.location.id, {
             method:'PUT',
             body: JSON.stringify({
@@ -54,11 +61,11 @@ export default class SubmitLocation extends Component {
     render() {
         return (
             <div className="submitform">
-                <form className="submitform">
+                <form className="submitform" onSubmit={this.handleSubmit}>
                     <label htmlFor="city">City:</label>
-                    <input type="text" id="city" value={this.props.location.city} />
+                    <input type="text" id="city" onChange={this.handleChange} value={this.state.city} />
                     <label htmlFor="description"> Write a brief description of the location:</label>
-                    <input type='textarea' id="description" onChange={this.handleChange} />
+                    <input type='textarea' id="description" onChange={this.handleChange} value={this.state.description} />
                     <label htmlFor="image">Upload image of location</label>
                     <input type="file" name="image" onChange={this.fileChange} />
                     <input type='submit' value="Update Location" />

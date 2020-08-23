@@ -117,7 +117,7 @@ export default class App extends Component {
   sendData(data, lat, lng){
     console.log(data)
     if (data.results[0]){
-      fetch('http://localhost:8000/api/v1/locations/', {
+      fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations', {
         method: 'POST',
         body: JSON.stringify({
           city: data.results[0].formatted_address,
@@ -142,7 +142,7 @@ export default class App extends Component {
         })
       })
     }else{
-      fetch('http://localhost:8000/api/v1/locations/', {
+      fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations', {
         method: 'POST',
         body: JSON.stringify({
           city: 'No name given from API',

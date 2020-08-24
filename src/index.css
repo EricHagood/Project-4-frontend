@@ -54,10 +54,10 @@ nav {
   
 }
 
-.itemDisplay{
+/* .itemDisplay{
   display: inline-flex;
   justify-content: space-evenly;
-}
+} */
 .deleteItem{
   float: right;
 }

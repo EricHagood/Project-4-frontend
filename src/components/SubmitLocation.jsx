@@ -60,15 +60,19 @@ export default class SubmitLocation extends Component {
 
     render() {
         return (
-            <div className="submitform">
+            <div className="submitDiv">
                 <form className="submitform" onSubmit={this.handleSubmit}>
                     <label htmlFor="city">City:</label>
-                    <input type="text" id="city" onChange={this.handleChange} value={this.state.city} />
-                    <label htmlFor="description"> Write a brief description of the location:</label>
-                    <input type='textarea' id="description" onChange={this.handleChange} value={this.state.description} />
+                    <input type="text" id="city" onChange={this.handleChange} value={this.state.city} /><br/>
+                    <label htmlFor="description"> Write a brief description of the location:
+                    <br/>
+                        <textarea onChange={this.handleChange} value={this.state.description} />
+                    </label>
+                    <br/>
+                    {/* <input type='textarea' id="description" onChange={this.handleChange} value={this.state.description} /><br/> */}
                     <label htmlFor="image">Upload image of location</label>
-                    <input type="file" name="image" onChange={this.fileChange} />
-                    <input type='submit' value="Update Location" />
+                    <input type="file" name="image" onChange={this.fileChange} /><br/>
+                    <input className="submitButton" type='submit' value="Update Location" />
                 </form>
             </div>
         )

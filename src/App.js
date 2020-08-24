@@ -34,7 +34,7 @@ export default class App extends Component {
   }
 
   getLocations(){
-    fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations/').then(response => {
+    fetch('http://localhost:33507/api/v1/locations/').then(response => {
       return response.json();
     }).then(data => {
       this.setState({

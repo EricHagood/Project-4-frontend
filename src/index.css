@@ -64,3 +64,22 @@ nav {
 .deleteItem:hover{
   cursor: pointer;
 }
+.submitDiv{
+  width: 100%;
+}
+.submitform{
+  display: block;
+  text-align: center;
+  margin-top: 10%;
+  font-size: 3em;
+}
+.submitButton{
+  border: black;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: 25px;
+}
+.location{
+  display: block;
+  text-align: center;
+}

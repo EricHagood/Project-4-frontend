@@ -46,7 +46,7 @@ export default class SubmitLocation extends Component {
                 latitude: this.props.location.latitude,
                 longitude: this.props.location.longitude,
                 image: imgstring,
-                description: '',
+                description: this.state.description,
                 visited: false
             }),
             headers: {

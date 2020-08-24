@@ -22,7 +22,7 @@ export default class LocationView extends Component {
                     <h2 className="locationname">Location Name: {this.props.location.city}</h2>
                     <h6>Coordinates: {this.props.location.latitude}, {this.props.location.longitude}</h6>
                     <img src={this.state.imageString} alt="uploaded" />
-                    <h6>Desription:</h6>
+                    <h2>Desription:</h2>
                     <p>{this.props.location.description}</p>
                     <SimpleMap lat={parseFloat(this.props.location.latitude)} lng={parseFloat(this.props.location.longitude)} API_KEY={this.props.API_KEY} height='40vh' width='60%' />
                 </div>

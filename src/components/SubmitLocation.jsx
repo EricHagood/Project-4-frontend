@@ -71,7 +71,7 @@ export default class SubmitLocation extends Component {
                     <input type="text" id="city" onChange={this.handleChange} value={this.state.city} /><br/>
                     <label htmlFor="description"> Write a brief description of the location:
                     <br/>
-                        <textarea onChange={this.handleChange} value={this.state.description} />
+                        <textarea id="description" onChange={this.handleChange} value={this.state.description} />
                     </label>
                     <br/>
                     {/* <input type='textarea' id="description" onChange={this.handleChange} value={this.state.description} /><br/> */}

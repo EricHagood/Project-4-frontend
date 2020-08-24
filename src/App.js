@@ -34,7 +34,7 @@ export default class App extends Component {
   }
 
   getLocations(){
-    fetch('http://localhost:8000/api/v1/locations/').then(response => {
+    fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations/').then(response => {
       return response.json();
     }).then(data => {
       this.setState({
@@ -48,7 +48,7 @@ export default class App extends Component {
   }
 
   handleDelete(deletedLocation, index){
-    fetch('http://localhost:8000/api/v1/locations/' + deletedLocation.id, {
+    fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations/' + deletedLocation.id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ export default class App extends Component {
   sendData(data, lat, lng){
     console.log(data)
     if (data.results[0]){
-      fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations', {
+      fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations/', {
         method: 'POST',
         body: JSON.stringify({
           city: data.results[0].formatted_address,
@@ -142,7 +142,7 @@ export default class App extends Component {
         })
       })
     }else{
-      fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations', {
+      fetch('https://blooming-lake-12475.herokuapp.com/api/v1/locations/', {
         method: 'POST',
         body: JSON.stringify({
           city: 'No name given from API',

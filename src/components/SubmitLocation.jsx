@@ -4,7 +4,7 @@ export default class SubmitLocation extends Component {
     constructor(props){
         super(props)
         this.state = {
-            baseURL: 'https://blooming-lake-12475.herokuapp.com/api/v1/locations',
+            baseURL: 'https://blooming-lake-12475.herokuapp.com/api/v1/locations/',
             image: ''
         }
         this.handleChange = this.handleChange.bind(this)

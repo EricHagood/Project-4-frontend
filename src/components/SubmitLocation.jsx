@@ -32,7 +32,12 @@ export default class SubmitLocation extends Component {
 
     handleSubmit(event, index){
         event.preventDefault()
-        let imgstring = btoa(this.state.image)
+        let imgstring 
+        if (this.state.image){
+            imgstring = btoa(this.state.image)
+        }else{
+            imgstring = ''
+        }
         console.log(imgstring)
         fetch(this.state.baseURL + this.props.location.id, {
             method:'PUT',

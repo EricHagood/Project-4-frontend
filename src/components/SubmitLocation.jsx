@@ -55,7 +55,7 @@ export default class SubmitLocation extends Component {
         }).then(response =>{
             return response.json()
         }).then (data =>{
-            const copyLocations = [...this.state.locations]
+            const copyLocations = [this.state.locations]
             copyLocations.splice(index, 1, data)
             this.setState({
                 locations: copyLocations
